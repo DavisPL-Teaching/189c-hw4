@@ -99,28 +99,74 @@ method TestMax7(x : int, y: int)
 
 /*
   B. Weakest preconditions
+
+  Recall that on HW1B you were asked to write specs that
+  "should completely describe the behavior of the function
+  on all possible inputs."
+  The underlying concept is that of *strongest postconditions*
+  and (in the opposite direction), *weakest preconditions*.
+
+  The following methods are variants of the ones we saw on HW1B.
+  For each method, find the weakest precondition.
+  Replace the precondition `requires false` when you have
+  implemented the function.
+
+  9. split_in_half
+
+  10. pad_with_spaces
 */
 
-/*
-  B. Abstraction and interfaces
+method SplitInHalf(s: string) returns (result1: string, result2: string)
+  // Precondition: TODO: replace this line
+  requires false
+  // Postconditions:
+  // - the two halves concatenate to s
+  // - the two halves have the same length
+  ensures result1 + result2 == s
+  ensures |result1| == |result2|
+{
+  var mid := |s| / 2;
+  result1 := s[..mid];
+  result2 := s[mid..];
+}
 
-  This problem explores the concept of abstraction and interfaces
-  through a binary search program.
+method PadWithSpaces(s: string, n: int) returns (result: string)
+  // Precondition: TODO: replace this line
+  requires false
+  // Postconditions:
+  // - the length of the result is n
+  // - the first part is s
+  // - the second part is padding
+  ensures |result| == n
+  ensures result[..|s|] == s
+  ensures result[|s|..] == seq(n - |s|, i => ' ')
+{
+  var prefix := s;
+  var padding := seq(n - |s|, i => ' ');
+  result := prefix + padding;
+}
+
+/*
+  C. Binary search
+
+  This part will explore the concept of abstraction and interfaces
+  through implementing a verified binary search algorithm.
 
   Many times in programming, there are multiple ways to implement
   a procedure or data structure -- as long as it satisfies the
   *interface* that we are expecting (pre and post conditions),
   it doesn't matter what the implementation of the procedure is.
 
-  We begin with a between(a, b) function that should return
-  a value between a and b.
+  First, we begin with the method:
+    between(a, b)
+  which should simply return an integer strictly between a and b, that is:
+    a < result < b.
 
-  9. The between function requires a precondition in order to
-  implement it. Implement the precondition to between
-  in the function between_precond.
+  11. The between method requires a precondition in order to implement it!
+  Implement the required precondition below.
   Your precondition should be the weakest possible precondition
   (the weakest possible condition on a and b) that makes it possible
-  to implement the following function in Q9.
+  to implement the following function in Q12.
 */
 
 function between_precond(a: int, b: int): bool
@@ -130,30 +176,30 @@ function between_precond(a: int, b: int): bool
 }
 
 /*
-  10. Implement the "between" method in three different ways.
+  12. Implement the "between" method in three different ways.
 
-  Make sure you don't modify the method signature
+  Don't modify the method signature
   or pre/postconditions for any of the versions.
 
   There is no other requirement other than that all three methods
   should be different from each other.
 */
 
-method between_v1(a: int, b: int) returns (result: int)
+method Between_v1(a: int, b: int) returns (result: int)
   requires between_precond(a, b)
   ensures a < result && result < b
 {
   // TODO
 }
 
-method between_v2(a: int, b: int) returns (result: int)
+method Between_v2(a: int, b: int) returns (result: int)
   requires between_precond(a, b)
   ensures a < result && result < b
 {
   // TODO
 }
 
-method between_v3(a: int, b: int) returns (result: int)
+method Between_v3(a: int, b: int) returns (result: int)
   requires between_precond(a, b)
   ensures a < result && result < b
 {
@@ -161,7 +207,7 @@ method between_v3(a: int, b: int) returns (result: int)
 }
 
 /*
-  11. Use your between method to implement
+  13. Use your between method to implement
   and prove a binary search algorithm.
 
   Requirements:
@@ -169,7 +215,7 @@ method between_v3(a: int, b: int) returns (result: int)
   - This binary search algorithm takes as input
     a function on integers, f, which is assumed
     to be monotonically increasing:
-      for all x, y: int :: x < y ==> f(x) <= f(y)
+      for all x, y: int :: x <= y ==> f(x) <= f(y)
 
   - The binary search algorithm should return
     the smallest value x such that
@@ -178,13 +224,12 @@ method between_v3(a: int, b: int) returns (result: int)
     need to prove this!
 
   - Don't modify the method signature or
-    pre/postconditions to binary_search.
+    pre/postconditions to BinarySearch.
 
-  - Your method should call between_v1, between_v2,
-    or between_v3 at least once.
+  - Your method should call Between_v1 at least once.
 */
 
-method binary_search(
+method BinarySearch(
   f: int -> int,
   min_val: int,
   max_val: int,
@@ -200,15 +245,15 @@ method binary_search(
   ensures f(result) >= target
   ensures f(result - 1) < target
   ensures min_val < result <= max_val
-  // Remove the following line to implement
+  // TODO: Remove the following line to implement
   requires false
 {
   // TODO
 }
 
 /*
-  12. Uncomment the following tests to check whether your
-  implementation of binary_search is working as expected.
+  14. Uncomment the following tests to check whether your
+  implementation of BinarySearch is working as expected.
 */
 
 function double(x: int): int
@@ -219,9 +264,9 @@ function double(x: int): int
 // TODO: Uncomment
 // method TestBinarySearch1()
 // {
-//   var result1 := binary_search(double, 0, 10, 4);
-//   var result2 := binary_search(double, 0, 10, 5);
-//   var result3 := binary_search(double, 0, 10, 20);
+//   var result1 := BinarySearch(double, 0, 10, 4);
+//   var result2 := BinarySearch(double, 0, 10, 5);
+//   var result3 := BinarySearch(double, 0, 10, 20);
 //   assert result1 == 2;
 //   assert result2 == 3;
 //   assert result3 == 10;
@@ -235,86 +280,29 @@ function square(x: int): int
 // TODO: Uncomment
 // method TestBinarySearch2()
 // {
-//   var result1 := binary_search(square, 0, 10, 10);
-//   var result2 := binary_search(square, 0, 10, 16);
-//   var result3 := binary_search(square, 0, 10, 100);
+//   var result1 := BinarySearch(square, 0, 10, 10);
+//   var result2 := BinarySearch(square, 0, 10, 16);
+//   var result3 := BinarySearch(square, 0, 10, 100);
 //   assert result1 == 4;
 //   assert result2 == 4;
 //   assert result3 == 10;
 // }
 
 /*
-  13. Try replacing between_v1, between_v2, or between_v3 in
-  the implementation of binary_search. What happens?
+  15. Try replacing Between_v1 with Between_v2 or Between_v3 in
+  the implementation of BinarySearch. What happens?
 
-  ###### Answer Q13 ######
+  ###### Answer Q15 ######
 
   ###### End of Answer ######
 
-  14. Are there advantages of leaving the interface (pre/postconditions)
+  16. Are there advantages of leaving the interface (pre/postconditions)
   for between abstract, so that multiple implementations are possible?
 
   Which of your between functions would be the most efficient to use
   in a real binary search implementation?
 
-  ###### Answer Q14 ######
-
-  ###### End of Answer ######
-*/
-
-/*
-  C. Strongest postconditions and weakest preconditions
-
-  Recall that on HW1 you were asked to write specs that
-  "should completely describe the behavior of the function
-  on all possible inputs."
-  The underlying concept is that of *strongest postconditions*
-  and (in the opposite direction), *weakest preconditions*.
-
-  Use the methods we discussed in class to find the strongest
-  postcondition and weakest precondition for each statement by adding
-  an assert() statement after every line of code in the function.
-
-  15. split_in_half
-  (strongest postcondition)
-
-  16. pad_with_spaces
-  (weakest precondition)
-*/
-
-method SplitInHalf(s: string) returns (result1: string, result2: string)
-  requires true
-  // ensures ... // fill in after finding the strongest postcondition
-{
-  var mid := (|s| + 1) / 2;
-  result1 := s[..mid];
-  result2 := s[mid..];
-}
-
-method PadWithSpaces(s: string, n: int) returns (result: string)
-  requires false // remove this line to work on this part!
-  // requires ... // fill in after finding the weakest precondition
-  ensures |result| == n
-  ensures n >= |s|
-  ensures result[..|s|] == s
-{
-  var prefix := s;
-  var padding := seq(n - |s|, i => ' ');
-  result := prefix + padding;
-}
-
-/*
-  17. What precondition fell out of the weakest precondition calculation?
-  Compare with the implementation we saw in Python:
-
-  def pad_with_spaces(s, n):
-      if len(s) > n:
-          return None
-      return s + " " * (n - len(s))
-
-  Do you see advantages to this version of the function above in Dafny?
-
-  ###### Answer Q17 ######
+  ###### Answer Q16 ######
 
   ###### End of Answer ######
 */
