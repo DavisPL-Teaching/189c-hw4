@@ -79,8 +79,6 @@ method TestMax7(x : int, y: int)
   - Uncomment all the assertions that are not true
   - Right click, Dafny --> "Show counterexample (experimental)"
   - Right click, Dafny --> "Copy counterexamples to clipboard"
-  - Right click, Dafny --> "Hide counterexamples (experimental)"
-  - Comment out the assertions again
 
   Paste the output below.
   It should copy the counterexamples for all properties at once.
@@ -88,8 +86,15 @@ method TestMax7(x : int, y: int)
 
   Note: This is an experimental feature, so it doesn't always work
   perfectly, but it is good to know about and can be useful for debugging.
+  I recommend turning it on only for this part
+  (or for debugging) and turning it off after.
 
-  Make sure to comment out the assertions again above
+  After you have pasted the counterexamples below:
+
+  - Right click, Dafny --> "Hide counterexamples (experimental)"
+  - Comment out the assertions again.
+
+  To reiterate: Make sure to comment out the assertions again above
   after you are done!
 
   ###### Answer Q8 ######
@@ -163,13 +168,18 @@ method TestPadWithSpaces()
 }
 
 /*
-  12. Now try to also write and prove a unit test for SplitInHalf.
+  12. Now also write and prove a similar unit test for SplitInHalf.
+
+  Additional requirement:
   You can use any example except don't use s == "", as that one is too easy.
 
-  This one is trickier! (What happens may surprise you.)
+  This one is trickier!
+  You may need to add an additional assertion in the middle
+  for it to work. (You can think of it sort of like a "lemma" --
+  that is, an intermediate hint to help Dafny prove the final result.)
   Modify your test to get Dafny to prove it successfully.
 
-  If you get stuck, take a look at hints.md.
+  Take a look at hints.md if you get stuck!
 */
 method TestSplitInHalf()
 {
@@ -188,7 +198,7 @@ method TestSplitInHalf()
   it doesn't matter what the implementation of the procedure is.
 
   First, we begin with the method:
-    between(a, b)
+    Between(a, b)
   which should simply return an integer strictly between a and b, that is:
     a < result < b.
 
@@ -196,7 +206,7 @@ method TestSplitInHalf()
   Implement the required precondition below.
   Your precondition should be the weakest possible precondition
   (the weakest possible condition on a and b) that makes it possible
-  to implement the following method in Q14.
+  to implement Between_v1 below.
 */
 
 function between_precond(a: int, b: int): bool
@@ -206,7 +216,7 @@ function between_precond(a: int, b: int): bool
 }
 
 /*
-  14. Implement the "between" method in three different ways.
+  14. Implement the "Between" method in three different ways.
 
   Don't modify the method signature
   or pre/postconditions for any of the versions.
@@ -257,6 +267,8 @@ method Between_v3(a: int, b: int) returns (result: int)
     pre/postconditions to BinarySearch.
 
   - Your method should call Between_v1 at least once.
+
+  See hints.md if you get stuck!
 */
 
 method BinarySearch(
@@ -327,9 +339,9 @@ function square(x: int): int
   ###### End of Answer ######
 
   18. Are there any advantages to leaving the interface (pre/postconditions)
-  for between abstract, so that multiple implementations are possible?
+  for Between abstract, so that multiple implementations are possible?
 
-  Which of your between functions would be the most efficient to use
+  Which of your Between functions would be the most efficient to use
   in a real binary search implementation?
 
   ###### Answer Q18 ######
