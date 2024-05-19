@@ -111,9 +111,12 @@ method TestMax7(x : int, y: int)
   Replace the precondition `requires false` when you have
   implemented the function.
 
-  9. split_in_half
+  9. SplitInHalf
 
-  10. pad_with_spaces
+  10. PadWithSpaces
+
+  If you have the right precondition, Dafny should automatically accept
+  the method. Without the precondition, the verification should fail.
 */
 
 method SplitInHalf(s: string) returns (result1: string, result2: string)
@@ -147,6 +150,33 @@ method PadWithSpaces(s: string, n: int) returns (result: string)
 }
 
 /*
+  11. Write and prove a unit test for PadWithSpaces
+  to make sure that the pre and postconditions are working as expected.
+
+  You can pick any example you want, as long as you have removed "requires false"
+  and pick a valid example, Dafny should be able to prove the test.
+*/
+
+method TestPadWithSpaces()
+{
+  // TODO
+}
+
+/*
+  12. Now try to also write and prove a unit test for SplitInHalf.
+  You can use any example except don't use s == "", as that one is too easy.
+
+  This one is trickier! (What happens may surprise you.)
+  Modify your test to get Dafny to prove it successfully.
+
+  If you get stuck, take a look at hints.md.
+*/
+method TestSplitInHalf()
+{
+  // TODO
+}
+
+/*
   C. Binary search
 
   This part will explore the concept of abstraction and interfaces
@@ -162,11 +192,11 @@ method PadWithSpaces(s: string, n: int) returns (result: string)
   which should simply return an integer strictly between a and b, that is:
     a < result < b.
 
-  11. The between method requires a precondition in order to implement it!
+  13. The between method requires a precondition in order to implement it!
   Implement the required precondition below.
   Your precondition should be the weakest possible precondition
   (the weakest possible condition on a and b) that makes it possible
-  to implement the following function in Q12.
+  to implement the following method in Q14.
 */
 
 function between_precond(a: int, b: int): bool
@@ -176,7 +206,7 @@ function between_precond(a: int, b: int): bool
 }
 
 /*
-  12. Implement the "between" method in three different ways.
+  14. Implement the "between" method in three different ways.
 
   Don't modify the method signature
   or pre/postconditions for any of the versions.
@@ -207,7 +237,7 @@ method Between_v3(a: int, b: int) returns (result: int)
 }
 
 /*
-  13. Use your between method to implement
+  15. Use your between method to implement
   and prove a binary search algorithm.
 
   Requirements:
@@ -252,7 +282,7 @@ method BinarySearch(
 }
 
 /*
-  14. Uncomment the following tests to check whether your
+  16. Uncomment the following tests to check whether your
   implementation of BinarySearch is working as expected.
 */
 
@@ -289,20 +319,20 @@ function square(x: int): int
 // }
 
 /*
-  15. Try replacing Between_v1 with Between_v2 or Between_v3 in
+  17. Try replacing Between_v1 with Between_v2 or Between_v3 in
   the implementation of BinarySearch. What happens?
 
-  ###### Answer Q15 ######
+  ###### Answer Q17 ######
 
   ###### End of Answer ######
 
-  16. Are there advantages of leaving the interface (pre/postconditions)
+  18. Are there any advantages to leaving the interface (pre/postconditions)
   for between abstract, so that multiple implementations are possible?
 
   Which of your between functions would be the most efficient to use
   in a real binary search implementation?
 
-  ###### Answer Q16 ######
+  ###### Answer Q18 ######
 
   ###### End of Answer ######
 */
