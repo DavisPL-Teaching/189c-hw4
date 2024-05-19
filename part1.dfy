@@ -16,7 +16,10 @@ function max(x: int, y: int): int
     For each property, you should fill in the Test method
     with an assertion that demonstrates the property.
     If the test does not pass (Dafny doesn't show a green line), comment out
-    only the assertion line (but leave the Test method there).
+    only the assertion line (but leave the Test method there), and add a
+    comment such as
+      // Not true
+    above the assertion to indicate that it is false.
 
     1. The maximum of a number with itself is the same number.
     2. The maximum of x and y is the same as the maximum of y and x.
@@ -77,8 +80,15 @@ method TestMax7(x : int, y: int)
     - Right click, Dafny --> "Show counterexample (experimental)"
     - Right click, Dafny --> "Copy counterexamples to clipboard"
 
-    Copy paste the output below.
-    Make sure to comment out the assertions again after you are done.
+    Paste the output below.
+    It should copy the counterexamples for all properties at once.
+    You can delete the "At file:///" clutter to leave only the counterexamples themselves.
+
+    Note: This is an experimental feature, so it doesn't always work
+    perfectly, but it is good to know about and can be useful for debugging.
+
+    Make sure to comment out the assertions again above
+    after you are done!
 
     ###### Answer Q8 ######
 
@@ -104,7 +114,7 @@ method TestMax7(x : int, y: int)
     in the function between_precond.
     Your precondition should be the weakest possible precondition
     (the weakest possible condition on a and b) that makes it possible
-    to impleemnt the following function in Q9.
+    to implement the following function in Q9.
 */
 
 function between_precond(a: int, b: int): bool
@@ -114,10 +124,13 @@ function between_precond(a: int, b: int): bool
 }
 
 /*
-  10. Implement the "between" function in three different ways.
+  10. Implement the "between" method in three different ways.
 
-  Make sure you don't modify the function signature
+  Make sure you don't modify the method signature
   or pre/postconditions for any of the versions.
+
+  There is no other requirement other than that all three methods
+  should be different from each other.
 */
 
 method between_v1(a: int, b: int) returns (result: int)
@@ -142,7 +155,7 @@ method between_v3(a: int, b: int) returns (result: int)
 }
 
 /*
-  11. Use your between function to implement
+  11. Use your between method to implement
   and prove a binary search algorithm.
 
   Requirements:
@@ -158,10 +171,10 @@ method between_v3(a: int, b: int) returns (result: int)
     The postcondition is written so that you will
     need to prove this!
 
-  - Don't modify the function signature or
+  - Don't modify the method signature or
     pre/postconditions to binary_search.
 
-  - Your function should call between_v1, between_v2,
+  - Your method should call between_v1, between_v2,
     or between_v3 at least once.
 */
 
@@ -173,13 +186,14 @@ method binary_search(
 ) returns (result: int)
   // Precondition: `f` is monotonically increasing and passes
   // `target` somewhere between `min_val` and `max_val`
-  requires forall x, y :: x < y ==> f(x) <= f(y)
+  requires forall x, y :: min_val <= x <= y <= max_val ==> f(x) <= f(y)
   requires min_val < max_val
   requires f(min_val) < target
   requires f(max_val) >= target
   // Postcondition: result is the smallest x such that f(x) >= target
   ensures f(result) >= target
-  ensures forall x :: x < result ==> f(x) < target
+  ensures f(result - 1) < target
+  ensures min_val < result <= max_val
   // Remove the following line to implement
   requires false
 {
@@ -227,15 +241,15 @@ function square(x: int): int
   13. Try replacing between_v1, between_v2, or between_v3 in
   the implementation of binary_search. What happens?
 
-  Are there advantages of leaving the interface (pre/postconditions)
-  for between abstract so that multiple implementations are possible?
-
   ###### Answer Q13 ######
 
   ###### End of Answer ######
 
-  14. Which of your between functions is the most efficient?
-  Which one would be the best to use in the binary search algorithm?
+  14. Are there advantages of leaving the interface (pre/postconditions)
+  for between abstract, so that multiple implementations are possible?
+
+  Which of your between functions would be the most efficient to use
+  in a real binary search implementation?
 
   ###### Answer Q14 ######
 
@@ -249,7 +263,7 @@ function square(x: int): int
   "should completely describe the behavior of the function
   on all possible inputs."
   The underlying concept is that of *strongest postconditions*
-  and (in the opposite directino), *weakest preconditions*.
+  and (in the opposite direction), *weakest preconditions*.
 
   Use the methods we discussed in class to find the strongest
   postcondition and weakest precondition for each statement by adding
@@ -267,7 +281,7 @@ method SplitInHalf(s: string) returns (result1: string, result2: string)
   // ensures ... // fill in after finding the strongest postcondition
 {
   var mid := (|s| + 1) / 2;
-  if mid == 0 {
+  if |s| == 0 {
     result1 := "";
     result2 := "";
   } else {
@@ -282,7 +296,6 @@ method PadWithSpaces(s: string, n: int) returns (result: string)
   ensures |result| == n
   ensures n >= |s|
   ensures result[..|s|] == s
-  ensures forall i :: |s| <= i < n ==> result[i] == ' '
 {
   var prefix := s;
   var padding := seq(n - |s|, i => ' ');
