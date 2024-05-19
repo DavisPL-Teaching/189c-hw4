@@ -9,8 +9,12 @@ Please follow the instructions at the bottom of this file.
 
 Similar to HW1 and HW2, there are three parts to this assignment.
 - Part 1 is a series of mini exercises.
-- Part 2 TODO
-- Part 3 TODO
+- Part 2 is about writing formally verified code in Dafny.
+  In each part you are given only the pre/postconditions, and you
+  have to write the code that satisfies them.
+- Part 3 is about writing a more complicated formally verified
+  implementation of merge sort. This part requires reasoning
+  about arrays, loop invariants, and possibly lemmas.
 
 As with HW1-HW3, the assignment will be submitted through GitHub Classroom. For detailed instructions, see [this Piazza post](https://piazza.com/class/lt90i40zrot3ue/post/48).
 
@@ -21,7 +25,6 @@ To continue, open and edit the files `part1.dfy`, `part2.dfy`, and `part3.dfy`.
 If you get stuck, take a look at the file `hints.md` for some hints.
 Please also don't hesitate to ask questions on Piazza or drop by
 office hours!
-(TODO)
 
 ## Installation (follow this first before starting the assignment)
 

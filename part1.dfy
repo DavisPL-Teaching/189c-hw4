@@ -1,6 +1,17 @@
 /*
   Part 1: Mini exercises
 
+  ===== Grading requirements =====
+
+  Your code should pass the Dafny verifier:
+    dafny part1.dfy
+  should pass with every function verified, no errors.
+  You can also simply check that the green bar shows up next
+  to every function in VSCode, throughout the whole file,
+  with no errors (shown in red).
+*/
+
+/*
   A. Writing specifications
 
   Consider the following function:
