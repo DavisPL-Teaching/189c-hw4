@@ -79,6 +79,8 @@ method TestMax7(x : int, y: int)
     - Uncomment all the assertions that are not true
     - Right click, Dafny --> "Show counterexample (experimental)"
     - Right click, Dafny --> "Copy counterexamples to clipboard"
+    - Right click, Dafny --> "Hide counterexamples (experimental)"
+    - Comment out the assertions again
 
     Paste the output below.
     It should copy the counterexamples for all properties at once.
@@ -281,13 +283,8 @@ method SplitInHalf(s: string) returns (result1: string, result2: string)
   // ensures ... // fill in after finding the strongest postcondition
 {
   var mid := (|s| + 1) / 2;
-  if |s| == 0 {
-    result1 := "";
-    result2 := "";
-  } else {
-    result1 := s[..(mid - 1)];
-    result2 := s[mid..];
-  }
+  result1 := s[..mid];
+  result2 := s[mid..];
 }
 
 method PadWithSpaces(s: string, n: int) returns (result: string)
