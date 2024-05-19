@@ -1,9 +1,9 @@
 /*
-    Part 1: Mini exercises
+  Part 1: Mini exercises
 
-    A. Writing specifications
+  A. Writing specifications
 
-    Consider the following function:
+  Consider the following function:
 */
 
 function max(x: int, y: int): int
@@ -12,28 +12,28 @@ function max(x: int, y: int): int
 }
 
 /*
-    Write specifications for the following properties of max using Dafny.
-    For each property, you should fill in the Test method
-    with an assertion that demonstrates the property.
-    If the test does not pass (Dafny doesn't show a green line), comment out
-    only the assertion line (but leave the Test method there), and add a
-    comment such as
-      // Not true
-    above the assertion to indicate that it is false.
+  Write specifications for the following properties of max using Dafny.
+  For each property, you should fill in the Test method
+  with an assertion that demonstrates the property.
+  If the test does not pass (Dafny doesn't show a green line), comment out
+  only the assertion line (but leave the Test method there), and add a
+  comment such as
+    // Not true
+  above the assertion to indicate that it is false.
 
-    1. The maximum of a number with itself is the same number.
-    2. The maximum of x and y is the same as the maximum of y and x.
-    3. Addition distributes over max:
-       max(x, y) + z is the same as max(x + z, y + z).
-    4. Multiplication distributes over max:
-       max(x, y) * z is the same as max(x * z, y * z).
-    5. Max distributes over addition:
-       max(x, y + z) is equal to the sum of max(x, y) and max(x, z).
-    6. The maximum of x and -x is always equal to the absolute value of x.
-       You will need to define the abs function for this property.
-    7. If x is positive (greater than zero), then max(x, y) is also positive.
-       To test this property, use a precondition on TestMax7 instead
-       of just a plain assertion.
+  1. The maximum of a number with itself is the same number.
+  2. The maximum of x and y is the same as the maximum of y and x.
+  3. Addition distributes over max:
+     max(x, y) + z is the same as max(x + z, y + z).
+  4. Multiplication distributes over max:
+     max(x, y) * z is the same as max(x * z, y * z).
+  5. Max distributes over addition:
+     max(x, y + z) is equal to the sum of max(x, y) and max(x, z).
+  6. The maximum of x and -x is always equal to the absolute value of x.
+     You will need to define the abs function for this property.
+  7. If x is positive (greater than zero), then max(x, y) is also positive.
+     To test this property, use a precondition on TestMax7 instead
+     of just a plain assertion.
 */
 
 method TestMax1(x: int)
@@ -73,50 +73,54 @@ method TestMax7(x : int, y: int)
 }
 
 /*
-    8. Use the Dafny "show counterexample" feature to find a counterexample
-    to all the properties that are not true:
+  8. Use the Dafny "show counterexample" feature to find a counterexample
+  to all the properties that are not true:
 
-    - Uncomment all the assertions that are not true
-    - Right click, Dafny --> "Show counterexample (experimental)"
-    - Right click, Dafny --> "Copy counterexamples to clipboard"
-    - Right click, Dafny --> "Hide counterexamples (experimental)"
-    - Comment out the assertions again
+  - Uncomment all the assertions that are not true
+  - Right click, Dafny --> "Show counterexample (experimental)"
+  - Right click, Dafny --> "Copy counterexamples to clipboard"
+  - Right click, Dafny --> "Hide counterexamples (experimental)"
+  - Comment out the assertions again
 
-    Paste the output below.
-    It should copy the counterexamples for all properties at once.
-    You can delete the "At file:///" clutter to leave only the counterexamples themselves.
+  Paste the output below.
+  It should copy the counterexamples for all properties at once.
+  You can delete the "At file:///" clutter to leave only the counterexamples themselves.
 
-    Note: This is an experimental feature, so it doesn't always work
-    perfectly, but it is good to know about and can be useful for debugging.
+  Note: This is an experimental feature, so it doesn't always work
+  perfectly, but it is good to know about and can be useful for debugging.
 
-    Make sure to comment out the assertions again above
-    after you are done!
+  Make sure to comment out the assertions again above
+  after you are done!
 
-    ###### Answer Q8 ######
+  ###### Answer Q8 ######
 
-    ###### End of Answer ######
+  ###### End of Answer ######
 */
 
 /*
-    B. Abstraction and interfaces
+  B. Weakest preconditions
+*/
 
-    This problem explores the concept of abstraction and interfaces
-    through a binary search program.
+/*
+  B. Abstraction and interfaces
 
-    Many times in programming, there are multiple ways to implement
-    a procedure or data structure -- as long as it satisfies the
-    *interface* that we are expecting (pre and post conditions),
-    it doesn't matter what the implementation of the procedure is.
+  This problem explores the concept of abstraction and interfaces
+  through a binary search program.
 
-    We begin with a between(a, b) function that should return
-    a value between a and b.
+  Many times in programming, there are multiple ways to implement
+  a procedure or data structure -- as long as it satisfies the
+  *interface* that we are expecting (pre and post conditions),
+  it doesn't matter what the implementation of the procedure is.
 
-    9. The between function requires a precondition in order to
-    implement it. Implement the precondition to between
-    in the function between_precond.
-    Your precondition should be the weakest possible precondition
-    (the weakest possible condition on a and b) that makes it possible
-    to implement the following function in Q9.
+  We begin with a between(a, b) function that should return
+  a value between a and b.
+
+  9. The between function requires a precondition in order to
+  implement it. Implement the precondition to between
+  in the function between_precond.
+  Your precondition should be the weakest possible precondition
+  (the weakest possible condition on a and b) that makes it possible
+  to implement the following function in Q9.
 */
 
 function between_precond(a: int, b: int): bool
