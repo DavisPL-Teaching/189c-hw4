@@ -208,13 +208,18 @@ method TestSplitInHalf()
   *interface* that we are expecting (pre and post conditions),
   it doesn't matter what the implementation of the procedure is.
 
-  First, we begin with the method:
+  We begin with the method:
     Between(a, b)
   which should simply return an integer strictly between a and b, that is:
     a < result < b.
 
+  (The point of this method is that when doing a binary search,
+  sometimes we need to pick a "pivot point" that is strictly between
+  two bounds. This method will help us do that.)
+
   13. The between method requires a precondition in order to implement it!
-  Implement the required precondition below.
+  Write the required precondition below.
+
   Your precondition should be the weakest possible precondition
   (the weakest possible condition on a and b) that makes it possible
   to implement Between_v1 below.
