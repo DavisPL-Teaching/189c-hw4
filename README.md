@@ -72,14 +72,30 @@ As in the Mac instructions,
 make sure that the green bars are showing up in VSCode.
 If so, you are good to go!
 
-## Installing the Dafny command line (optional)
+## Troubleshooting the installation
 
-This part of the installation is optional.
+If you are having any trouble after following the installation instructions above,
+please let us know by making a post on Piazza and we will try to help
+you! See
+[this post](https://piazza.com/class/lt90i40zrot3ue/post/28)
+for Piazza guidelines about posting errors.
+If the instructions are not working locally on your machine,
+try running Dafny in a codespace via the instructions above.
+
+----
+
+## OPTIONAL: Installing the Dafny command line
+
+**The remainder of this file is totally optional.**
+You can skip it if you want to only use Dafny from VSCode.
+
+Once the green checkmarks show up, that means Dafny is installed!
+That means, there is a `dafny` binary or `Dafny.exe` somewhere
+on your system.
 If you are on Mac, the command line will already be installed
 via `brew`.
-
-Once the green checkmarks show up, that means Dafny is already installed!
-To be able to use `dafny` on the command line,
+On other platforms,
+to be able to use `dafny` on the command line,
 we neeed to add `dafny` to your PATH.
 
 The easiest way to find the path to Dafny is by looking at
@@ -149,13 +165,3 @@ C:\Users\user_name\.vscode\extensions\dafny-lang.ide-vscode-3.3.0\out\resources\
 
 That's where your `Dafny.exe` is! You can use it by specifying
 the full path or add it to your PATH first.
-
-## Troubleshooting the installation
-
-If you are having any trouble after following the installation instructions above,
-please let us know by making a post on Piazza and we will try to help
-you! See
-[this post](https://piazza.com/class/lt90i40zrot3ue/post/28)
-for Piazza guidelines about posting errors.
-If the instructions are not working locally on your machine,
-try running Dafny in a codespace via the instructions above.

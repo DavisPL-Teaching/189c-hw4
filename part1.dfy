@@ -9,6 +9,16 @@
     ```
     Dafny program verifier finished with <n> verified, 0 errors
     ```
+
+  - Don't change the names of any methods or functions,
+    or signatures unless you are asked to do so.
+
+  - For places marked TODO, make sure these are filled in
+    with code.
+
+  - Remove `requires false` from any preconditions
+    (`requires false` is one way to indicate an unimplemented method,
+    like `raise NotImplementedError` in Python.)
 */
 
 /*

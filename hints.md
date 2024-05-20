@@ -83,23 +83,28 @@ stuck, you can use an if statement (like if a is even, ... for example).
 
 ## 1.15
 
+This one is also tricky! You will need to first implement the
+function, then verify it using a loop invariant.
+
 For the implementation part:
-This is a standard binary search; if you need to review, I recommend looking
+it is a standard binary search; if you need to review, I recommend looking
 up the pseudocode for binary search online. For example, on
 [Wikipedia](https://en.wikipedia.org/wiki/Binary_search_algorithm#Algorithm).
 
-For the proof part:
-Your function will have a loop!
-So the hard part is determining the loop invariant.
+For the proof and loop invariant:
+your implementations may vary, but your loop probably has a "lower" and an "upper"
+value that you know the target is between.
+The general rule is for any variables that are modified by the
+loop, you need a loop invariant that tells you what properties
+those variables satisfy.
 
-Your implementations may vary, but your loop probably has a "lower" and an "upper"
-value that you know the target is between. So you might need a loop invariant like:
+For example, your loop invariant might need some things like:
    - the function evaluated at the lower bound is less than the target; and
    - the function evaluated at the upper bound is greater than or equal to the target.
-Also, you will need that the lower bound is less than the upper bound, and that
-both of these are in range of the (min_value, max_value) bounds specified in the input.
-This has to be asserted as part of the invariant since the lower/upper bounds change
-on each iteration of the loop.
+Also, note that the for a correct binary search implementation,
+the lower bound is always less than the upper bound, and that both of these are in range of the (min_value, max_value) bounds specified in the input.
+If you have a `mid` or `pivot` variable in your loop, you may need
+similar constraints on the mid value.
 
 ## 2: constructor
 

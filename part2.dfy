@@ -2,7 +2,7 @@
   Part 2: Stopwatch
 
   This part is an introduction to classes and class invariants
-  through implementing a simple stopwatch class.
+  in Dafny, through implementing a simple stopwatch class.
 
   ===== What is a class invariant? =====
 
@@ -39,13 +39,11 @@
   The stopwatch consists of four fields: seconds, minutes, hours, and days.
   You will first implement a class invariant that should ensure that the time is always
   valid (the meaning of "valid" is described above the class invariant).
-
-  Then you will implement methods to convert the time to seconds,
-  tick, reset, or add an arbitrary increment to the time.
+  Then you will implement all of the methods below.
   The constructor is written for you, but it needs a postcondition.
 
   To check that your implementation is working, there is a Tests() method at the end
-  of the file. Add a test case for each method you implement.
+  of the file.
 
   ===== Just for fun =====
 
@@ -57,7 +55,7 @@
   the purpose of this exercise.
   But it might be fun (as a larger project) to write a real time module in
   a verified language like Dafny and try to prove or disprove some of these falsehoods
-  given a sufficiently detailed model of time.
+  given a sufficiently detailed model of time. :)
 
   ===== Grading notes =====
 
@@ -70,8 +68,13 @@
 
   - Your test cases in Tests() should cover at least one case for each method.
 
+  - The implementation of all methods should
+    match the description given above the method.
+    (This is most important for `class_invariant` and `as_seconds`.)
+
   - Ensure that you implement *both* the preconditions and postconditions for
-    each methods, and that the class invariant is always respected by each method.
+    each methods, and that the class invariant is mentioned
+    in the pre and postconditions of each method.
 */
 
 class Stopwatch
@@ -87,7 +90,7 @@ class Stopwatch
 
     The stopwatch should ensure that the time is always valid,
     i.e., when seconds gets to 60, it should wrap over to 0 and minutes should
-    go to 1, and similarly for minutes or hours. "days" is just a counter that
+    go up by 1, and similarly for minutes or hours. "days" is just a counter that
     can be arbitrarily large.
 
     Additionally, none of the time values should ever be negative.

@@ -1,24 +1,18 @@
 /*
   Part 3: Loop invariants
 
-  The last part consists of 5 loop invariant problems.
+  The last part consists of 4 loop invariant problems.
 
   This part is written in a "design by contract" style:
   we will give you the pre/postconditions
   for several methods. Your job is to implement the
   method so that the verification passes.
 
-  Requirements:
+  ===== Grading notes =====
+
   - Every method that you implement should have a `while` loop!
     If you find a way to do it without a loop, you may explain
     it in a comment, but please implement it with a loop.
-
-  - Don't change the method signatures or pre/postconditions
-    for any of the methods!
-    You can always add helper methods if needed.
-
-  - Since the specs are already written, the only requirement
-    is that you implement the methods so that the specs pass.
 
   - Your file should pass the Dafny verifier with no errors or warnings.
     Look for the green bars on the left or
@@ -26,6 +20,13 @@
     ```
     Dafny program verifier finished with <n> verified, 0 errors
     ```
+
+  - Don't change the method signatures or pre/postconditions
+    for any of the methods.
+    However, you can add helper methods if needed.
+
+  - Since the specs are already written, the only requirement
+    is that you implement the methods so that the specs pass.
 */
 
 /*
@@ -108,6 +109,8 @@ method CopySequence(a: seq<int>) returns (b: seq<int>)
 
   A lemma is written as a method that provides
   an additional postcondition. A lemma may or may not have a body.
+  If it does have a body, usually that would consist of some
+  additional assertions that help prove the lemma.
   You can write one like this:
 
   method Lemma(a: seq<int>)
@@ -119,21 +122,21 @@ method CopySequence(a: seq<int>) returns (b: seq<int>)
   It brings the postcondition assert in scope so that Dafny
   can use it to verify the code in the location you're working on.
 
-    // Call the lemma
+    // Call the lemma to bring its postcondition into scope
     Lemma();
-    // Prove some additional assertions that were failing using the lemma
+    // Prove some additional assertions that the lemma is helpful for
     assert <some hard condition>;
 
 */
 
-// This function is needed to state the pre/postconditions
+// This function is needed to state the postcond for PartialSums
 function array_sum(a: seq<int>): int
 {
   if |a| == 0 then 0 else (a[|a| - 1] + array_sum(a[..(|a| - 1)]))
 }
 
 // Space for lemmas
-// (You can rename or remove the lemmas)
+// (You may rename or remove the lemmas)
 lemma Lemma1(a: seq<int>)
 {
   // Fill in here
@@ -162,11 +165,12 @@ method PartialSums(a: seq<int>) returns (b: seq<int>)
   so that calling the tests actually works.
 
   If you have the Dafny command line, you can also run the
-  function with `dafny run part3.dfy` as we saw in class.
+  function with `dafny run part3.dfy` as we saw in class
+  to see the output.
 
   There are a few assertions, but since we've already proven
-  the code correct, we don't need to test it exhaustively
-  (or try to get any additional assertions to pass).
+  the code correct, we don't need to test the code exhaustively.
+  You don't need to add any other assertions or tests.
 */
 
 // method Main()
