@@ -124,3 +124,49 @@ old(as_seconds())
 If you use a loop, your loop invariant
 can refer to old(...) as in the postcondition to Tick.
 You may also need to repeat the class invariant as a loop invariant.
+
+## 3.1
+
+Return values are mutable in Dafny, so the value `root` is mutable
+if you want to use it in your implementation.
+
+Since you are searching for the smallest integer `root` such that
+something holds, try a loop invariant of the form
+`root * root < (something)`.
+
+## 3.2
+
+You will need to use the `pow()` function in your invariant.
+The loop invariant here is similar to 3.1.
+
+## 3.3
+
+You can add an element to a sequence a like this:
+```
+a := a + [element];
+```
+
+You can refer to all elements of a sequence in an invariant like
+this:
+```
+invariant forall j :: (0 <= j < |a|) ==> (some condition on a)
+```
+
+## 3.4
+
+In my implementation, I needed two lemmas.
+One of them, `ArraySliceLemma` says that
+```
+a[..(i + 1)] == a[..i] + [a[i]]
+```
+
+The other one, `ArraySumLemma` states that a similar property to the above holds for array_sum.
+Here's my proof (implementation) for `ArraySumLemma`:
+```
+{
+  if |a| == 0 {
+  } else {
+    ArraySliceLemma(a);
+  }
+}
+```

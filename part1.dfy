@@ -1,14 +1,14 @@
 /*
   Part 1: Mini exercises
 
-  ===== Grading requirements =====
+  ===== Grading notes =====
 
-  Your code should pass the Dafny verifier:
-    dafny part1.dfy
-  should pass with every function verified, no errors.
-  You can also simply check that the green bar shows up next
-  to every function in VSCode, throughout the whole file,
-  with no errors (shown in red).
+  - Your file should pass the Dafny verifier with no errors or warnings.
+    Look for the green bars on the left or
+    (if you have the command line): `dafny verify part1.dfy` should output
+    ```
+    Dafny program verifier finished with <n> verified, 0 errors
+    ```
 */
 
 /*
@@ -125,7 +125,7 @@ method TestMax7(x : int, y: int)
   The following methods are variants of the ones we saw on HW1B.
   For each method, find the weakest precondition.
   Replace the precondition `requires false` when you have
-  implemented the function.
+  written the precondition.
 
   9. SplitInHalf
 

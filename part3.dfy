@@ -21,7 +21,8 @@
     is that you implement the methods so that the specs pass.
 
   - Your file should pass the Dafny verifier with no errors or warnings.
-    Look for the green bars or (if you have the command line):
+    Look for the green bars on the left or
+    (if you have the command line): `dafny verify part3.dfy` should output
     ```
     Dafny program verifier finished with <n> verified, 0 errors
     ```
@@ -132,6 +133,7 @@ function array_sum(a: seq<int>): int
 }
 
 // Space for lemmas
+// (You can rename or remove the lemmas)
 lemma Lemma1(a: seq<int>)
 {
   // Fill in here
@@ -151,36 +153,42 @@ method PartialSums(a: seq<int>) returns (b: seq<int>)
 }
 
 /*
-  5. Uncomment the following tests to make sure that
+  5. Uncomment the following Main function to make sure that
   your implementations above are working.
+  If it passes the verifier (green bar), you're done!
 
-  Note: since we've already proven the code correct,
-  using tests is not strictly necessary. You could argue
-  it's redundant.
-  The main point of this part is to make sure that you have
+  Note: The main point of this part is to make sure that you have
   removed the `requires false` lines and implemented the methods
   so that calling the tests actually works.
+
+  If you have the Dafny command line, you can also run the
+  function with `dafny run part3.dfy` as we saw in class.
+
+  There are a few assertions, but since we've already proven
+  the code correct, we don't need to test it exhaustively
+  (or try to get any additional assertions to pass).
 */
 
-method Tests()
-{
-  // var x1 := IntSqrt(3);
-  // var x2 := IntSqrt(4);
-  // var x3 := IntSqrt(5);
-  // assert x1 == 1;
-  // assert x2 == 2;
-  // assert x3 == 2;
+// method Main()
+// {
+//   var x1 := IntSqrt(3);
+//   var x2 := IntSqrt(4);
+//   var x3 := IntSqrt(5);
+//   assert x1 == 1;
+//   assert x2 == 2;
+//   assert x3 == 2;
+//   print "x1 = ", x1, ", x2 = ", x2, ", x3 = ", x3, "\n";
 
-  // var y1 := NumDigits(123);
-  // var y2 := NumDigits(1);
-  // assert y1 == 3;
-  // assert y2 == 1;
+//   var y := NumDigits(12);
+//   assert y == 2;
+//   print "y = ", y, "\n";
 
-  // var a1 := [1, 2, 3];
-  // var b1 := CopySequence(a1);
-  // assert a1 == b1;
+//   var a1 := [1, 2, 3];
+//   var b1 := CopySequence(a1);
+//   assert a1 == b1;
+//   print "b1 = ", b1, "\n";
 
-  // var a2 := [1, 2, 3];
-  // var b2 := PartialSums(a2);
-  // assert b2 == [0, 1, 3, 6];
-}
+//   var a2 := [1, 2, 3];
+//   var b2 := PartialSums(a2);
+//   print "b2 = ", b2, "\n";
+// }

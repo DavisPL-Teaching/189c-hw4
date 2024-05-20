@@ -61,10 +61,11 @@
 
   ===== Grading notes =====
 
-  - Your implementation should pass the Dafny verifier with no errors or warnings.
-    Look for the green bars or (if you have the command line):
+  - Your file should pass the Dafny verifier with no errors or warnings.
+    Look for the green bars on the left or
+    (if you have the command line): `dafny verify part2.dfy` should output
     ```
-    Dafny program verifier finished with 8 verified, 0 errors
+    Dafny program verifier finished with <n> verified, 0 errors
     ```
 
   - Your test cases in Tests() should cover at least one case for each method.
