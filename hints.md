@@ -100,3 +100,27 @@ Also, you will need that the lower bound is less than the upper bound, and that
 both of these are in range of the (min_value, max_value) bounds specified in the input.
 This has to be asserted as part of the invariant since the lower/upper bounds change
 on each iteration of the loop.
+
+## 2: constructor
+
+Every method will need to use the class invariant as a precondition
+and postcondition, but for the constructor, it only needs a
+postcondition.
+
+You will need an additional postcondition that the object is
+initialized correclty; you may find as_seconds() useful here.
+
+## 2: Tick
+
+You will need to use the `old` keyword for the postcondition.
+You can also wrap a function invocation in `old`, for example:
+
+```
+old(as_seconds())
+```
+
+## 2: AdvanceBy
+
+If you use a loop, your loop invariant
+can refer to old(...) as in the postcondition to Tick.
+You may also need to repeat the class invariant as a loop invariant.
