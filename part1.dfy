@@ -37,8 +37,8 @@ function max(x: int, y: int): int
   For each property, you should fill in the Test method
   with an assertion that demonstrates the property.
   If the test does not pass (Dafny doesn't show a green line), comment out
-  only the assertion line (but leave the Test method there), and add a
-  comment such as
+  only the assertion line (but leave the Test method there), and add the
+  following comment:
     // Not true
   above the assertion to indicate that it is false.
 
