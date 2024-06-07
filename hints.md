@@ -175,3 +175,6 @@ Here's my proof (implementation) for `ArraySumLemma`:
   }
 }
 ```
+
+Note: You may be able to do it with fewer lemmas
+(probably with only one lemma).
