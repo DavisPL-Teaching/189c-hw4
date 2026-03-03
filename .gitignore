@@ -1,5 +1,7 @@
 .DS_Store
-__pycache__
-.hypothesis
+*.csproj
+*.cs
+*.deps.json
 *.dll
-*.runtimeconfig.json
+*.pdb
+obj/
