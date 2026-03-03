@@ -1,5 +1,5 @@
 /*
-  Part 2: Stopwatch
+  Part 2: Classes and class invariants
 
   This part is an introduction to classes and class invariants
   in Dafny, through implementing a simple stopwatch class.
@@ -55,7 +55,7 @@
   the purpose of this exercise.
   But it might be fun (as a larger project) to write a real time module in
   a verified language like Dafny and try to prove or disprove some of these falsehoods
-  given a sufficiently detailed model of time. :)
+  given a sufficiently detailed model of time.
 
   ===== Grading notes =====
 
@@ -86,7 +86,7 @@ class Stopwatch
   var days: int
 
   /*
-    Class invariant
+    1. Class invariant
 
     The stopwatch should ensure that the time is always valid,
     i.e., when seconds gets to 60, it should wrap over to 0 and minutes should
@@ -102,7 +102,7 @@ class Stopwatch
   // }
 
   /*
-    Convert the stopwatch to a total number of seconds.
+    2. Convert the stopwatch to a total number of seconds.
 
     This is a function as it does not modify the state of the object,
     so it doesn't need a pre or postcondition.
@@ -114,7 +114,7 @@ class Stopwatch
   // }
 
   /*
-    Constructor
+    3. Constructor
 
     Initializes the stopwatch to 0.
   */
@@ -129,7 +129,7 @@ class Stopwatch
   }
 
   /*
-    Add 1 second to the stopwatch.
+    4. Add 1 second to the stopwatch.
   */
   method Tick()
     modifies this
@@ -139,7 +139,7 @@ class Stopwatch
   }
 
   /*
-    Reset the stopwatch to 0 (for all counters).
+    5. Reset the stopwatch to 0 (for all counters).
   */
   method Reset()
     modifies this
@@ -149,7 +149,7 @@ class Stopwatch
   }
 
   /*
-    Advance the stopwatch by an arbitrary number of seconds.
+    6. Advance the stopwatch by an arbitrary number of seconds.
     The number to advance by should be nonnegative!
 
     This should be equivalent to calling Tick() repeatedly
@@ -166,7 +166,7 @@ class Stopwatch
 }
 
 /*
-  Test your stopwatch here.
+  7. Test your stopwatch here.
 
   Add at least one test case for each method.
 */
@@ -178,9 +178,27 @@ method Tests()
 
   // Test the as_seconds() function
 
+  // Test the constructor
+
   // Test the Tick() method
 
   // Test the Reset() method
 
   // Test the AdvanceBy() method
 }
+
+/*
+  8. Comment on the following questions:
+
+  Does abstracting pre/postconditions in
+  a class invariant help make verification
+  easier, harder, or equally as difficult
+  as if classes (objects) were not available?
+
+  Are classes and object-oriented programming necessary
+  for a practical, real-world verification language?
+
+  ===== ANSWER Q8 BELOW =====
+
+  ===== END OF Q8 ANSWER =====
+*/

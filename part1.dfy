@@ -94,45 +94,44 @@ method TestMax7(x : int, y: int)
 }
 
 /*
-  8. Use the Dafny "show counterexample" feature to find a counterexample
-  to all the properties that are not true:
+  8. Dafny has an experimental "show verification trace" feature
+  that is intended to find a counterexample for a property that isn't true.
+  This part will ask you to try out this feature!
 
-  - Uncomment all the assertions that are not true
-  - Right click, Dafny --> "Show counterexample (experimental)"
-  - Right click, Dafny --> "Copy counterexamples to clipboard"
+  Unfortunately the tool has not always worked reliably in the past,
+  but there has been some nice progress on it by the Dafny team recently.
 
-  Paste the output below.
-  It should copy the counterexamples for all properties at once.
-  You can delete the "At file:///" clutter to leave only the counterexamples themselves.
+  Try out the feature by doing the following:
 
-  Note: This is an experimental feature, so it doesn't always work
-  perfectly, but it is good to know about and can be useful for debugging.
-  I recommend turning it on only for this part
-  (or for debugging) and turning it off after.
+  - Temporarily uncomment one of the assertions that is not true
+  - Right click, Dafny --> "Show verification trace (experimental)"
+  - If this doesn't work, you can also try pressing F7, which should
+    turn on the feature.
 
-  After you have pasted the counterexamples below:
+  It should show you some outputs interactively in VSCode.
+  - Comment out the assertion again, and right click, Dafny --> "Hide verification trace (experimental)" to disable the feature again.
 
-  - Right click, Dafny --> "Hide counterexamples (experimental)"
-  - Comment out the assertions again.
+  Paste any output you got below and describe what happened.
+  Did Dafny give a genuine counterexample? Did it crash or raise an error?
 
-  To reiterate: Make sure to comment out the assertions again above
-  after you are done!
+  Comment on why it might be hard to generate counterexamples in Dafny.
+  (Please answer more generally, not just for this example.)
 
-  ###### Answer Q8 ######
+  ===== ANSWER Q8 BELOW =====
 
-  ###### End of Answer ######
+  ===== END OF Q8 ANSWER =====
 */
 
 /*
   B. Weakest preconditions
 
-  Recall that on HW1B you were asked to write specs that
+  Recall that a full functional correctness spec is one that
   "should completely describe the behavior of the function
   on all possible inputs."
   The underlying concept is that of *strongest postconditions*
   and (in the opposite direction), *weakest preconditions*.
 
-  The following methods are variants of the ones we saw on HW1B.
+  The following methods are given to you.
   For each method, find the weakest precondition.
   Replace the precondition `requires false` when you have
   written the precondition.
@@ -196,12 +195,11 @@ method TestPadWithSpaces()
 
   This one is trickier!
   You may need to add an additional assertion in the middle
-  for it to work. (You can think of it sort of like a "lemma" --
-  that is, an intermediate hint to help Dafny prove the final result.)
+  for it to work. (You can think of this like an
+  intermediate hint to help Dafny prove the final result.)
   Modify your test to get Dafny to prove it successfully.
-
-  Take a look at hints.md if you get stuck!
 */
+
 method TestSplitInHalf()
 {
   // TODO
@@ -228,7 +226,7 @@ method TestSplitInHalf()
   two bounds. This method will help us do that.)
 
   13. The between method requires a precondition in order to implement it!
-  Write the required precondition below.
+  Write exactly the required precondition below.
 
   Your precondition should be the weakest possible precondition
   (the weakest possible condition on a and b) that makes it possible
@@ -293,8 +291,6 @@ method Between_v3(a: int, b: int) returns (result: int)
     pre/postconditions to BinarySearch.
 
   - Your method should call Between_v1 at least once.
-
-  See hints.md if you get stuck!
 */
 
 method BinarySearch(
@@ -360,9 +356,9 @@ function square(x: int): int
   17. Try replacing Between_v1 with Between_v2 or Between_v3 in
   the implementation of BinarySearch. What happens?
 
-  ###### Answer Q17 ######
+  ===== ANSWER Q17 BELOW =====
 
-  ###### End of Answer ######
+  ===== END OF Q17 ANSWER =====
 
   18. Are there any advantages to leaving the interface (pre/postconditions)
   for Between abstract, so that multiple implementations are possible?
@@ -370,7 +366,7 @@ function square(x: int): int
   Which of your Between functions would be the most efficient to use
   in a real binary search implementation?
 
-  ###### Answer Q18 ######
+  ===== ANSWER Q18 BELOW =====
 
-  ###### End of Answer ######
+  ===== END OF Q18 ANSWER =====
 */

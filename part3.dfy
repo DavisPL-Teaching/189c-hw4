@@ -103,7 +103,6 @@ method CopySequence(a: seq<int>) returns (b: seq<int>)
 
   We have provided a space for a helper lemma below and
   a brief explanation of how lemmas work.
-  Check out the hints.md file if you get stuck!
 
   ===== What are lemmas? =====
 
@@ -165,8 +164,7 @@ method PartialSums(a: seq<int>) returns (b: seq<int>)
   so that calling the tests actually works.
 
   If you have the Dafny command line, you can also run the
-  function with `dafny run part3.dfy` as we saw in class
-  to see the output.
+  function with `dafny run part3.dfy`.
 
   There are a few assertions, but since we've already proven
   the code correct, we don't need to test the code exhaustively.
@@ -196,3 +194,15 @@ method PartialSums(a: seq<int>) returns (b: seq<int>)
 //   var b2 := PartialSums(a2);
 //   print "b2 = ", b2, "\n";
 // }
+
+/*
+  6. Short answer
+
+  Which of the above loop invariants did you find hardest to solve?
+  Which was the easiest?
+  Comment on why this might be the case.
+
+  ===== ANSWER Q6 BELOW =====
+
+  ===== END OF Q6 ANSWER =====
+*/
