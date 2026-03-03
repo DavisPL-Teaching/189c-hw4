@@ -1,5 +1,10 @@
 # HW4 Selected Hints
 
+## 1.7
+
+The precondition should be the "x is positive" part.
+The assertion should be the "max(x, y) is positive" part.
+
 ## 1.10
 
 It may help to compare this version to the Python version we saw in HW1:
@@ -11,6 +16,12 @@ It may help to compare this version to the Python version we saw in HW1:
 
 Compared to that version, this version never returns None.
 What does that imply about the input?
+
+## 1.11, 1.12
+
+Make sure that your unit test is not simply repeating the postcondition!
+It should be a specific assertion that this particular example input/output
+is as expected.
 
 ## 1.12
 
@@ -104,7 +115,24 @@ For examples of invariants on arrays/sequences, please review the class notes.
 ## 3.4
 
 In my implementation, I needed two lemmas.
-You should expermient with your code by adding assertions to figure out what Dafny knows and what it doesn't know about your input sequence.
+(If you want to come up with the lammas yourself,
+you can try expermienting with your code by adding assertions to figure out what Dafny knows and what it doesn't know about your input sequence!)
+
+The first lemma, `ArraySliceLemma` says that
+```
+a[..(i + 1)] == a[..i] + [a[i]]
+```
+
+The second, `ArraySumLemma` states that a similar property to the above holds for array_sum.
+Here's my proof (implementation) for `ArraySumLemma`:
+```
+{
+  if |a| == 0 {
+  } else {
+    ArraySliceLemma(a);
+  }
+}
+```
 
 The first of my lemmas was a lemma about expressions of the form `a[..(i + 1)]`, and the second was about how `array_sum` behaves on an expression of this form.
 (Note that it is also possible to do it with only one lemma, and not two.)

@@ -98,8 +98,9 @@ method TestMax7(x : int, y: int)
   that is intended to find a counterexample for a property that isn't true.
   This part will ask you to try out this feature!
 
-  Unfortunately the tool has not always worked reliably in the past,
-  but there has been some nice progress on it by the Dafny team recently.
+  The tool has not always worked reliably in the past -- fortunately,\
+  there has been some nice progress on it by the
+  Dafny team recently.
 
   Try out the feature by doing the following:
 
@@ -176,7 +177,7 @@ method PadWithSpaces(s: string, n: int) returns (result: string)
 
 /*
   11. Write and prove a unit test for PadWithSpaces
-  to make sure that the pre and postconditions are working as expected.
+  to make sure that the pre- and postconditions are working as expected.
 
   You can pick any example you want, as long as you have removed "requires false"
   and pick a valid example, Dafny should be able to prove the test.
@@ -217,8 +218,11 @@ method TestSplitInHalf()
   it doesn't matter what the implementation of the procedure is.
 
   We begin with the method:
+
     Between(a, b)
+
   which should simply return an integer strictly between a and b, that is:
+
     a < result < b.
 
   (The point of this method is that when doing a binary search,
@@ -363,10 +367,14 @@ function square(x: int): int
   18. Are there any advantages to leaving the interface (pre/postconditions)
   for Between abstract, so that multiple implementations are possible?
 
-  Which of your Between functions would be the most efficient to use
-  in a real binary search implementation?
-
   ===== ANSWER Q18 BELOW =====
 
   ===== END OF Q18 ANSWER =====
+
+  19. Which of your Between functions would be the most efficient to use
+  in a real binary search implementation?
+
+  ===== ANSWER Q19 BELOW =====
+
+  ===== END OF Q19 ANSWER =====
 */
